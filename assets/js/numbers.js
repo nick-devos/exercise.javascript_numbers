@@ -50,8 +50,55 @@ function compute(expression) {
     }
 
     for(let x = 0; x < operators.length; x++) {
+        if (operators[x] == "-") {
+            value = numbers[x] - numbers[x+1];
+            operators.splice(x, 1);
+
+            console.log(operators);
+            numbers[x] = value;
+            numbers.splice(x+1, 1);
+
+            console.log(numbers);
+        }
         if(operators[x] == "+") {
-            value = parseInt(numbers[x]) + parseInt(numbers[x+1]);
+            value = parseFloat(numbers[x]) + parseFloat(numbers[x+1]);
+            operators.splice(x, 1);
+
+            console.log(operators);
+            numbers[x] = value;
+            numbers.splice(x+1, 1);
+
+            console.log(numbers);
+        }
+    }
+
+
+    //cleanup -- without this again some are stopping one short, others are fine
+    for(let x = 0; x < operators.length; x++) {
+        if(operators[x] == "*") {
+            value = numbers[x] * numbers[x+1];
+            operators.splice(x, 1);
+
+            console.log(operators);
+            numbers[x] = value;
+            numbers.splice(x+1, 1);
+
+            console.log(numbers);
+        }
+        if (operators[x] == "/") {
+            value = numbers[x] / numbers[x+1];
+            operators.splice(x, 1);
+
+            console.log(operators);
+            numbers[x] = value;
+            numbers.splice(x+1, 1);
+
+            console.log(numbers);
+        }
+    }
+    for(let x = 0; x < operators.length; x++) {
+        if(operators[x] == "+") {
+            value = parseFloat(numbers[x]) + parseFloat(numbers[x+1]);
             operators.splice(x, 1);
 
             console.log(operators);
@@ -71,6 +118,9 @@ function compute(expression) {
             console.log(numbers);
         }
     }
+
+
+
 
 return numbers[0];
 
